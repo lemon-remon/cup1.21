@@ -46,7 +46,7 @@ for (let i = 1; i <= totalButtons; i++) {
   buttons.push(button);
 }
 
-/* 🔥 他端末とリアルタイム同期 */
+/* リアルタイム同期 */
 onSnapshot(docRef, (snapshot) => {
   const data = snapshot.data() || {};
   const labels = data.labels || {};
