@@ -34,7 +34,7 @@ const buttons = [];
 for (let i = 1; i <= totalButtons; i++) {
   const button = document.createElement("button");
   button.className = "square-button";
-  button.textContent = i;
+  button.textContent = "";
   button.dataset.id = i;
 
   // Read-only mode: disable all click interactions
@@ -149,3 +149,4 @@ if (showBtn) {
     openResultsModal(lines);
   });
 }
+
