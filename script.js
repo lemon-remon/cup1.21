@@ -149,6 +149,3 @@ if (showBtn) {
     openResultsModal(lines);
   });
 }
-
-
-
