@@ -68,11 +68,51 @@ onSnapshot(docRef, (snapshot) => {
 });
 
 /* タイトル横の色リセットボタン */
+let resetClickCount = 0;
 const resetBtn = document.getElementById('resetColors');
+
+function triggerExplosion() {
+  document.body.classList.add('shaking');
+
+  buttons.forEach((btn, index) => {
+    const tx = (Math.random() - 0.5) * 2000 + 'px';
+    const ty = (Math.random() - 0.5) * 2000 + 'px';
+    const tr = (Math.random() - 0.5) * 1080 + 'deg';
+
+    btn.style.setProperty('--tx', tx);
+    btn.style.setProperty('--ty', ty);
+    btn.style.setProperty('--tr', tr);
+
+    setTimeout(() => {
+      btn.classList.add('exploding-button');
+    }, Math.random() * 500);
+  });
+
+  setTimeout(() => {
+    let overlay = document.querySelector('.broken-overlay');
+    if (!overlay) {
+      overlay = document.createElement('div');
+      overlay.className = 'broken-overlay';
+      overlay.innerHTML = '<div class="broken-text">リセットできませーん</div><div style="font-size:1.2rem">ページを再読み込みしてね</div>';
+      document.body.appendChild(overlay);
+    }
+    overlay.classList.add('active');
+    document.body.classList.remove('shaking');
+  }, 1500);
+}
+
 if (resetBtn) {
-  resetBtn.disabled = true;
-  resetBtn.style.cursor = 'not-allowed';
-  resetBtn.style.opacity = '0.6';
+  resetBtn.disabled = false; // Enable for easter egg
+  resetBtn.style.cursor = 'pointer';
+  resetBtn.style.opacity = '1';
+
+  resetBtn.addEventListener('click', () => {
+    resetClickCount++;
+    if (resetClickCount >= 10) {
+      triggerExplosion();
+      resetBtn.disabled = true;
+    }
+  });
 }
 
 /* リザルト（赤のボタンの文字を表示） */
