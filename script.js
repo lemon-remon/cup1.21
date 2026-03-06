@@ -57,7 +57,7 @@ onSnapshot(docRef, (snapshot) => {
     if (labels[id] !== undefined) {
       button.textContent = labels[id];
     } else {
-      button.textContent = id;
+      button.textContent = "";
     }
     // 色
     const color = colors[id] || 'none';
@@ -149,5 +149,6 @@ if (showBtn) {
     openResultsModal(lines);
   });
 }
+
 
 
